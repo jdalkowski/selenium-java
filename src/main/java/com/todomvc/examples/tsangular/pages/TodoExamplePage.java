@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class TodoExamplePage {
+public class TodoExamplePage extends WebPage {
 
     @FindBy(css = "header.header>h1")
     private WebElement pageHeader;
@@ -22,7 +22,7 @@ public class TodoExamplePage {
     private List<WebElement> todoElementList;
 
     public TodoExamplePage(final WebDriver driver) {
-        super();
+        super(driver);
     }
 
     @Step
