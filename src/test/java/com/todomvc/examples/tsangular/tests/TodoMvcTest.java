@@ -2,16 +2,20 @@ package com.todomvc.examples.tsangular.tests;
 
 import com.todomvc.examples.tsangular.core.TestCase;
 import com.todomvc.examples.tsangular.pages.TodoExamplePage;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TodoMvcTest extends TestCase {
 
-    private static final String firstNote = "Test note number one";
-    private static final String secondNote = "Test note number two";
-    private static final String thirdNote = "Test note number three";
+    private static final String FIRST_NOTE = "Test note number one";
+    private static final String SECOND_NOTE = "Test note number two";
+    private static final String THIRD_NOTE = "Test note number three";
 
     private TodoExamplePage todoExamplePage;
 
@@ -23,10 +27,11 @@ public class TodoMvcTest extends TestCase {
     @Test
     public void shouldAddTodoNotes() {
         addThreeTodoItems();
-        assertThat(todoExamplePage.getTodoElementList().size()).isEqualTo(3);
-        assertThat(todoExamplePage.getTodoElementList().get(0).getText()).isEqualTo(firstNote);
-        assertThat(todoExamplePage.getTodoElementList().get(1).getText()).isEqualTo(secondNote);
-        assertThat(todoExamplePage.getTodoElementList().get(2).getText()).isEqualTo(thirdNote);
+        final List<WebElement> todoNoteList = todoExamplePage.getTodoElementList();
+        assertThat(todoNoteList).hasSize(3);
+        assertThat(todoNoteList.get(0).getText()).isEqualTo(FIRST_NOTE);
+        assertThat(todoNoteList.get(1).getText()).isEqualTo(SECOND_NOTE);
+        assertThat(todoNoteList.get(2).getText()).isEqualTo(THIRD_NOTE);
     }
 
     @Test
@@ -41,14 +46,20 @@ public class TodoMvcTest extends TestCase {
     @Test
     public void shouldRemoveTodoNoteFromList() {
         addThreeTodoItems();
-        assertThat(todoExamplePage.getTodoElementList().size()).isEqualTo(3);
+        final List<WebElement> todoNoteList = todoExamplePage.getTodoElementList();
+        assertThat(todoNoteList).hasSize(3);
         todoExamplePage.removeTodoNote(1);
-        assertThat(todoExamplePage.getTodoElementList().size()).isEqualTo(2);
+        assertThat(todoNoteList).hasSize(2);
+    }
+
+    @AfterMethod
+    public void clearStorage() {
+        clearLocalStorage();
     }
 
     private void addThreeTodoItems() {
-        todoExamplePage.addTodoNote(firstNote);
-        todoExamplePage.addTodoNote(secondNote);
-        todoExamplePage.addTodoNote(thirdNote);
+        todoExamplePage.addTodoNote(FIRST_NOTE);
+        todoExamplePage.addTodoNote(SECOND_NOTE);
+        todoExamplePage.addTodoNote(THIRD_NOTE);
     }
 }
