@@ -1,4 +1,4 @@
-package com.todomvc.examples.tsangular.pages;
+package com.practice.examples.pages;
 
 import io.qameta.allure.Step;
 import lombok.Getter;

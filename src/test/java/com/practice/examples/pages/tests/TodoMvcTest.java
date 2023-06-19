@@ -1,7 +1,7 @@
-package com.todomvc.examples.tsangular.tests;
+package com.practice.examples.pages.tests;
 
-import com.todomvc.examples.tsangular.core.TestCase;
-import com.todomvc.examples.tsangular.pages.TodoExamplePage;
+import com.practice.examples.pages.core.TestCase;
+import com.practice.examples.pages.TodoExamplePage;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

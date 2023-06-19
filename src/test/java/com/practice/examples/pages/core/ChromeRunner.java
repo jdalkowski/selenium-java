@@ -1,4 +1,4 @@
-package com.todomvc.examples.tsangular.core;
+package com.practice.examples.pages.core;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
